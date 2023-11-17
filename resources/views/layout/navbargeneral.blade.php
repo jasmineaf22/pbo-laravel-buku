@@ -14,7 +14,7 @@
           <i class="fas fa-search"></i>
         </a>
         <div class="navbar-search-block">
-          <form class="form-inline">
+          <form class="form-inline" method="get" action="">
             <div class="input-group input-group-sm">
               <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
               <div class="input-group-append">
@@ -33,15 +33,11 @@
       
       <!-- Notifications Dropdown Menu -->
       
-      <li class="nav-item">
-        <!--Ini ntar Diubah buat template surat peminjaman-->
-        <a class="nav-link" data-widget="fullscreen" href="#" role="button" title='Template Surat Peminjaman'>
-          <i class="nav-icon fas fa-file"></i>
-        </a>
+
       </li>
       <li class="nav-item">
-            <a href="{{ asset('template/') }}/calendar.php" class="nav-link">
-              <i class="nav-icon fas fa-calendar-alt"></i>
+            <a href="{{ route('logout') }}" class="nav-link">
+              <i class="nav-icon fas fa-power-off"></i>
             </a>
       </li>
     </ul>

@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Form Peminjaman</title>
+  <title>Form Data Buku</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -26,11 +26,11 @@
       <div class="container-fluid ">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Booking Form</h1>
+            <h1>Form Pendataan Buku</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Peminjaman Ruangan FT</a></li>
+              <li class="breadcrumb-item"><a href="#">Pendataan Buku Perpustakaan</a></li>
               <li class="breadcrumb-item active">Formulir</li>
             </ol>
           </div>
@@ -47,51 +47,57 @@
             <!-- general form elements -->
             <div class="card card-primary mt-5">
               <div class="card-header text-center">
-                <h3 class="card-title">Formulir Peminjaman Ruangan</h3>
+                <h3 class="card-title">Formulir Pendataan Buku Perpustakaan</h3>
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form method="POST" action="{{ route('submit-form') }}">@csrf
+              <form method="POST" action="{{ $buku ? route('buku.update', $buku) : route('submit-form') }}">
+                @csrf
+                @if ($buku)
+                @method('PUT')
+                @endif
                 <div class="card-body">
                   <div class="form-group">
                     <label for="judul">Judul</label>
-                    <input type="text" class="form-control" id="judul" placeholder="Judul buku" name="judul" required>
+                    <input type="text" class="form-control" id="judul" placeholder="Judul buku" name="judul" value="{{ $buku ? $buku->judul : '' }}" required>
                   </div>
                   <div class="form-group">
                     <label for="penulis">Penulis</label>
-                    <input type="text" class="form-control" id="penulis" placeholder="Nama Penulis" name="penulis" required>
+                    <input type="text" class="form-control" id="penulis" placeholder="Nama Penulis" name="penulis" value="{{ $buku ? $buku->penulis : '' }}" required>
                   </div>
                   <div class="form-group">
                     <label for="id_kategori">Kategori</label>
                     <select class="form-control" id="id_kategori" name="id_kategori" required>
                         <option value="" selected disabled>Select Kategori</option>
                         @foreach ($categories as $category)
-                            <option value="{{ $category->id_kategori }}">{{ $category->nama_kategori }}</option>
+                            <option value="{{ $category->id_kategori }}" {{ $buku && $buku->id_kategori == $category->id_kategori ? 'selected' : '' }}>
+                                {{ $category->nama_kategori }}
+                            </option>
                         @endforeach
                     </select>
-                </div>               
+                </div>              
                   <div class="form-group">
                     <label for="sinopsis">Sinopsis</label>
-                    <input type="text" class="form-control" id="sinopsis" placeholder="Sinopsis" name="sinopsis" required>
+                    <input type="text" class="form-control" id="sinopsis" placeholder="Sinopsis" name="sinopsis" value="{{ $buku ? $buku->sinopsis : '' }}" required>
                   </div>
                   <div class="form-group">
                     <label for="tahun_terbit">Tahun terbit</label>
-                    <input type="text" class="form-control" id="tahun_terbit" placeholder="Tahun terbit" name="tahun_terbit" required>
+                    <input type="text" class="form-control" id="tahun_terbit" placeholder="Tahun terbit" name="tahun_terbit" value="{{ $buku ? $buku->tahun_terbit : '' }}" required>
                   </div>
                   <div class="form-group">
                     <label for="foto">Cover Buku</label>
                     <div class="input-group">
-                      <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="foto" name="foto">
-                        <label class="custom-file-label" for="foto">Choose file</label>
-                      </div>
+                        <div class="custom-file">
+                            <input type="file" class="custom-file-input" id="foto" name="foto">
+                            <label class="custom-file-label" for="foto">Choose file</label>
+                        </div>
                     </div>
-                  </div>
+                </div>
               </div></div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">{{ $buku ? 'Update' : 'Submit' }}</button>
                 </div>
               </form>
             </div>

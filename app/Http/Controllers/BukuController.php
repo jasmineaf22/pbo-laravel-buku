@@ -24,7 +24,7 @@ class BukuController extends Controller
     public function create()
     {
         $categories = Kategori::all();
-        return view('form', ['categories' => $categories]);
+        return view('form', ['categories' => $categories, 'buku' => null]);
     }
     
     
@@ -72,15 +72,37 @@ class BukuController extends Controller
      */
     public function edit(Buku $buku)
     {
-        //
+        $categories = Kategori::all();
+        return view('form', ['categories' => $categories, 'buku' => $buku]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateBukuRequest $request, Buku $buku)
+    public function update(Request $request, Buku $buku)
     {
-        //
+        // Validate the form data
+        $request->validate([
+            'judul' => 'required',
+            'penulis' => 'required',
+            'id_kategori' => 'required',
+            'sinopsis' => 'required',
+            'tahun_terbit' => 'required',
+            'foto' => 'required'
+        ]);
+    
+        // Update the Buku instance in the database
+        $buku->update([
+            'judul' => $request->judul,
+            'penulis' => $request->penulis,
+            'id_kategori' => $request->id_kategori,
+            'sinopsis' => $request->sinopsis,
+            'tahun_terbit' => $request->tahun_terbit,
+            'foto' => $request->foto
+        ]);
+    
+        // Redirect to a success page or any other page you want
+        return redirect()->route('table')->with('success', 'Buku berhasil diupdate');
     }
 
     /**
@@ -99,4 +121,5 @@ class BukuController extends Controller
 
         return view('kategori', compact('categories'));
     }
+
 }

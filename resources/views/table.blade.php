@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Data Peminjam</title>
+  <title>Daftar Buku</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -29,12 +29,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Jadwal Peminjaman</h1>
+            <h1>Daftar Buku</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Peminjaman Ruang FT</a></li>
-              <li class="breadcrumb-item active">Jadwal</li>
+              <li class="breadcrumb-item"><a href="#">Pendataan Buku Perpustakaan</a></li>
+              <li class="breadcrumb-item active">Daftar</li>
             </ol>
           </div>
         </div>
@@ -71,11 +71,10 @@
                         <td>{{ $buku->kategoris->nama_kategori }}</td>
                         <td>{{ $buku->tahun_terbit }}</td>
                         <td>{{ $buku->sinopsis }}</td>
-                        <td> <form action="{{ route('buku.destroy', $buku) }}" method="post">
+                        <td> <form action="{{ route('buku.edit', $buku) }}" method="get">
                           @csrf
-                          @method('DELETE')
                           <button type="submit" class="btn btn-link">Edit</button>
-                      </form>
+                      </form>                     
                           <form action="{{ route('buku.destroy', $buku) }}" method="post">
                             @csrf
                             @method('DELETE')

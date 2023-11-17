@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Gedung</title>
+  <title>Kategori Buku</title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -25,12 +25,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Gedung FT Unsoed</h1>
+            <h1>Daftar Kategori</h1>
           </div>
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Peminjaman Ruang FT</a></li>
-              <li class="breadcrumb-item active">Gedung</li>
+              <li class="breadcrumb-item"><a href="#">Pendataan Buku Perpustakaan</a></li>
+              <li class="breadcrumb-item active">Kategori</li>
             </ol>
           </div>
         </div>
@@ -44,7 +44,7 @@
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Rincian Gedung</h3>
+                <h3 class="card-title">Kategori Buku</h3>
               </div>
               <div class="card-body">
                 <div id="accordion">

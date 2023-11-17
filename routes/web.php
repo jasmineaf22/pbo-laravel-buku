@@ -17,38 +17,27 @@ use App\Http\Controllers\BukuController;
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/register', function(){
-    return view('register');
+// Grup middleware untuk rute yang hanya dapat diakses oleh guest
+Route::middleware(['guest'])->group(function () {
+    Route::get('/register', [RegisterController::class, 'create'])->name('register');
+    Route::post('/register', [RegisterController::class, 'store'])->name('register');
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
+    Route::post('/login', [LoginController::class, 'authenticate'])->name('login');
 });
 
-Route::get('/login', function(){
-    return view('login');
+// Grup middleware untuk rute yang hanya dapat diakses oleh pengguna yang sudah terautentikasi
+Route::middleware(['auth'])->group(function () {
+    Route::get('/table', [BukuController::class, 'show'])->name('table');
+    Route::get('/form', [BukuController::class, 'create'])->name('form');
+    Route::post('/submit-form', [BukuController::class, 'store'])->name('submit-form');
+    Route::get('/kategori', [BukuController::class, 'kategory'])->name('kategori');
+    Route::delete('/buku/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
+    Route::put('/buku/{buku}', [BukuController::class, 'update'])->name('buku.update');
+    Route::get('/buku/{buku}/edit', [BukuController::class, 'edit'])->name('buku.edit');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
-
-Route::get('/table', function(){
-    return view('table');
-});
-
-Route::get('/form', function(){
-    return view('form');
-});
-
-Route::get('/kategori', function(){
-    return view('kategori');
-});
-
-Route::get('/register', [RegisterController::class, 'create'])->name('register')->middleware('guest');
-Route::post('/register', [RegisterController::class, 'store'])->name('register')->middleware('guest');
-Route::get('/login', [LoginController::class, 'login'])->name('login')->middleware('guest');
-Route::post('/login', [LoginController::class, 'authenticate'])->name('login')->middleware('guest');
-
-Route::post('/submit-form', [BukuController::class, 'store'])->name('submit-form');
-Route::get('/form', [BukuController::class, 'create'])->name('form');
-Route::get('/table', [BukuController::class, 'show'])->name('table');
-
-Route::get('/kategori', [BukuController::class, 'kategory'])->name('kategori');
-Route::delete('/buku/{buku}', [BukuController::class, 'destroy'])->name('buku.destroy');
