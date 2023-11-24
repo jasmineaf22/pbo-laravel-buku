@@ -17,7 +17,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
-    <a href="https://ft.unsoed.ac.id/"><b>FT</b>Unsoed</a>
+    <a href="https://ft.unsoed.ac.id/"><b>Perpus</b>FT</a>
   </div>
   <!-- /.login-logo -->
   <div class="card border-0 shadow">

@@ -19,7 +19,7 @@ use App\Http\Controllers\BukuController;
 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('login');
 });
 
 // Grup middleware untuk rute yang hanya dapat diakses oleh guest
