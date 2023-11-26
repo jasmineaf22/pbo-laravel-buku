@@ -49,7 +49,7 @@
           <!-- /.col -->
           <div class="text-center nt-3">
             <button type="submit" class="btn btn-primary btn-block">login</button>
-          </div>
+          </div> <a href="register" class="text-center">Belum punya akun</a>
           <!-- /.col -->
         </div>
       </form>

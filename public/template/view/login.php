@@ -48,9 +48,10 @@
         </div>
           <!-- /.col -->
           <div class="text-center nt-3">
-            <button type="submit" class="btn btn-primary btn-block">login</button>
+            <button type="submit" class="btn btn-primary btn-block">login....</button>
           </div>
           <!-- /.col -->
+          
         </div>
       </form>
     <!-- /.login-card-body -->
